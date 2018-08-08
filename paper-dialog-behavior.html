@@ -129,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              target.hasAttribute('dialog-confirm') ||
              target.hasAttribute('reason'))) {
           this._updateClosingReasonConfirmed(
-              target.hasAttribute('dialog-confirm'), (target.hasAttribute('reason') ? target.reason : null));
+              target.hasAttribute('dialog-confirm'), (target.hasAttribute('reason') ? target.getAttribute('reason') : null));
           this.close();
           event.stopPropagation();
           break;
