@@ -107,9 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    _updateClosingReasonConfirmed: function(confirmed) {
+    _updateClosingReasonConfirmed: function(confirmed, reason) {
+
       this.closingReason = this.closingReason || {};
       this.closingReason.confirmed = confirmed;
+      this.closingReason.reason = reason || null;
     },
 
     /**
@@ -124,9 +126,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var target = path[i];
         if (target.hasAttribute &&
             (target.hasAttribute('dialog-dismiss') ||
-             target.hasAttribute('dialog-confirm'))) {
+             target.hasAttribute('dialog-confirm') ||
+             target.hasAttribute('reason'))) {
           this._updateClosingReasonConfirmed(
-              target.hasAttribute('dialog-confirm'));
+              target.hasAttribute('dialog-confirm'), (target.hasAttribute('reason') ? target.reason : null));
           this.close();
           event.stopPropagation();
           break;
